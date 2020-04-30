@@ -41,7 +41,11 @@ _UNO App has a serive called FoodAtHome which is very easy to use. Send an SMS w
 
 This app is deployed on Heroku. You can check it [here](https://frozen-sierra-78630.herokuapp.com/dashboard). My account is Twilio's Trial Account so it can only work with limited numbers. But fortunatley you can test it through whatsapp.
 
-**Note: You number is not present in our database so you can't use transfer funds or buy something. You can olny get help and view products available for shopping. Commands with [!] will not work with any unregistered number.**
+Below is a demo of the app. I used whatsapp. You can also use SMS to test. The procedure is almost same.
+
+![Demo 1 - Transferring Funds](https://github.com/alinauroz/dev_post/blob/master/shopping_demo.gif?raw=true)
+
+**Note: Your number is not present in our database so you can't transfer funds or buy something. You can olny get help and view products available for shopping. Commands with [!] will not work with any unregistered number.**
 
 Send a message with `possible-those` to +14155238886 and then use following commands:
 
@@ -104,7 +108,7 @@ const handle = input => {
 
 ```
 
-When a command is runs it sends update to admins using socket io. After processing a request, result is sent to user either on whatsapp or using sms. Twilio's Whatsapp and SMS SDK is present in integration layer. This layer also has direct connection to database. 
+When a command is runs it sends update to admins using socket io. After processing a request, result is sent to user either on whatsapp or using sms. Twilio's Whatsapp and SMS SDK is present in integration layer. This layer also has direct connection to database.
 
 ```javascript
 
@@ -113,6 +117,8 @@ client.messages.create({
     body : msg,
     to: to
 })
-}
+
 
 ```
+
+_You can find complete code on github and run it on your server. For testing, you dont have to send messages everytime you want to check your app. Just use POST and send request to your webhook and don't forget to turn off authetification while testing otherwise you will get an error._
